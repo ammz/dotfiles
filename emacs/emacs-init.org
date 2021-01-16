@@ -1528,7 +1528,7 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
 #+begin_src emacs-lisp
 
   (use-package ox-hugo
-    :ensure t
+    :straight t
     :config
     (with-eval-after-load 'ox
       (require 'ox-hugo))
@@ -1579,7 +1579,7 @@ Plantilla para capturar nueva entrada
     :init
     (setq lsp-keymap-prefix "C-c l")
     :config
-    (lsp-enable-which-key-integration t))
+    (setq lsp-enable-which-key-integration t))
 
 #+end_SRC
 

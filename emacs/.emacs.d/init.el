@@ -719,7 +719,7 @@ based on the directory of the current buffer."
   :after org)
 
 (use-package ox-hugo
-  :ensure t
+  :straight t
   :config
   (with-eval-after-load 'ox
     (require 'ox-hugo))
@@ -757,7 +757,7 @@ See `org-capture-templates' for more information."
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
-  (lsp-enable-which-key-integration t))
+  (setq lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
   :straight t
