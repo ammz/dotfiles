@@ -42,7 +42,7 @@ stow emacs
 
 * =early-init.el=
 :PROPERTIES:
-:header-args+: :tangle "~/.emacs.d/early-init.el"
+:header-args+: :tangle "~/dotfiles/emacs/.emacs.d/early-init.el"
 :END:
 
 Aunque suelo tener funcionando Emacs todo el tiempo, hay veces que no. En esos casos siempre quiero que cuando lo necesite arranque lo más rápido posible
