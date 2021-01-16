@@ -1,0 +1,8 @@
+[core]
+	excludesfile = /Users/ammz/.gitignore_global
+	editor = emacs
+[user]
+	name = Antonio Moreno
+	email = ammz@deversorius.net
+[color]
+	ui = true
