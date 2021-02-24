@@ -7,7 +7,7 @@
 
 Este fichero contiene la documentación así como el código de la configuración de =Emacs=, que viene siendo la aplicación que más utilizo en el día a día (programación, gestión de tareas, escritos, ...).
 
-Dado que vengo usando diferentes equipos y sistemas operativos (linux, mac), he decido centralizar todas las configuraciones en este fichero.
+Dado que vengo usando diferentes equipos y sistemas operativos (linux, mac), he decidido centralizar todas las configuraciones en este fichero.
 
 Me he apoyado en distintas referencias. Las más usadas han sido:
 
@@ -57,7 +57,7 @@ Lo primero será comentar adecuadamente el fichero:
   ;;; Comentario:
   ;;; Configuración de Emacs de Antonio Moreno.
   ;;; Este fichero ha sido generado automáticamente con `org-babel-tangle'.
-  ;;; No cambie este fichero. Fichero generardor: emacs-init.org en `user-emacs-directory'
+  ;;; No cambie este fichero. Fichero generador: emacs-init.org en `user-emacs-directory'
   ;;;
   ;;; Código:
 #+end_src
@@ -172,7 +172,7 @@ Aquí finaliza el fichero =early-init.el=.
   ;;; Comentario:
   ;;; Configuración de Emacs de Antonio Moreno.
   ;;; Este fichero ha sido generado automáticamente con `org-babel-tangle'.
-  ;;; No cambie este fichero. Fichero generardor: emacs-init.org en `user-emacs-directory'
+  ;;; No cambie este fichero. Fichero generador: emacs-init.org en `user-emacs-directory'
   ;;;
   ;;; Código:
 #+end_src
@@ -1345,29 +1345,29 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
     (setq org-capture-templates
      '(("o" "TODO vencimiento" entry
         (file+headline "~/Sync/org/inbox.org" "tareas")
-        "* TODO %?\ndeadline: %^{fecha tope}t")
+        "* TODO %?\nDEADLINE: %^{fecha tope}t")
        ("t" "TODO" entry
         (file+headline "~/Sync/org/inbox.org" "tareas")
         "* TODO %?\n")
-       ("n" "nota" entry
+       ("n" "Nota" entry
         (file+headline "~/Sync/org/inbox.org" "notas")
         "* %?\n%c")
-       ("h" "nota alerta" entry
+       ("h" "Nota alerta" entry
         (file+headline "~/proyectos/hugo-sge/content-org/pie.org" "notas de alerta")
         (function org-hugo-new-subtree-post-capture-template)
         :prepend t)
-       ("r" "recordatorio" entry
+       ("r" "Recordatorio" entry
         (file "~/Sync/org/recuerda.org")
         "* %?\n %^t")
-       ("d" "diario" entry
+       ("d" "Diario" entry
         (file+olp+datetree "~/Sync/org/diario.org")
         "** %?" :time-prompt t)
-       ("r" "reunion" entry
+       ("R" "Reunion" entry
         (file+headline "~/Sync/org/inbox.org" "reuniones")
         "* TODO %? :reunion:\n%^t %^{lugar}p")
-       ("i" "informe" entry
+       ("i" "Informe" entry
         (file+headline "~/Sync/org/informes.org" "2019")
-        "* TODO %? %^g\n:properties:\n
+        "* TODO %? %^g\n:PROPERTIES:\n
                             :solicitante: %^{solicitante|sge|sgt|vice}\n
                             :f_entrada: %^u\n
                             :f_respuesta: \n:end:\n")))
