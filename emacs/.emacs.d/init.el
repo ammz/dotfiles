@@ -718,6 +718,8 @@ based on the directory of the current buffer."
 (use-package org-tempo
   :after org)
 
+(require 'org-inlinetask)
+
 (use-package ox-hugo
   :straight t
   :config
