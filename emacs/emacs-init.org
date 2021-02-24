@@ -1502,7 +1502,10 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
 
   (use-package org-tempo
     :after org)
+
+  (require 'org-inlinetask)
 #+END_SRC
+
 ** COMMENT org-roam
 
 #+begin_src emacs-lisp
