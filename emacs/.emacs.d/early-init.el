@@ -3,7 +3,7 @@
 ;;; Comentario:
 ;;; Configuración de Emacs de Antonio Moreno.
 ;;; Este fichero ha sido generado automáticamente con `org-babel-tangle'.
-;;; No cambie este fichero. Fichero generardor: emacs-init.org en `user-emacs-directory'
+;;; No cambie este fichero. Fichero generador: emacs-init.org en `user-emacs-directory'
 ;;;
 ;;; Código:
 
