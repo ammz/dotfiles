@@ -1627,6 +1627,14 @@ Plantilla para capturar nueva entrada
 
 #+end_SRC
 
+** ESS
+#+begin_SRC emacs-lisp
+
+  (use-package ess
+    :straight t
+    )
+
+#+end_SRC
 ** C++
 
 Modern C++ code highlighting
