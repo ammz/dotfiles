@@ -1566,6 +1566,16 @@ Plantilla para capturar nueva entrada
                  "\n")))
 
 #+end_SRC
+** gnuplot
+
+#+begin_src emacs-lisp
+
+  (use-package gnuplot
+    :straight t
+    )
+
+#+end_SRC
+
 ** IDE (lsp)
 
 *** lsp-mode
