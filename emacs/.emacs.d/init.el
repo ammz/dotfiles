@@ -89,7 +89,7 @@
 (use-package emacs
   :config
   ;; (set-frame-font "Hack 12" t t)
-  (set-face-attribute 'default nil :font "Hack 12"))
+  (set-face-attribute 'default nil :font "Hack 14"))
 
 (use-package delight
   :straight t
@@ -560,29 +560,29 @@ based on the directory of the current buffer."
   (setq org-capture-templates
    '(("o" "TODO vencimiento" entry
       (file+headline "~/Sync/org/inbox.org" "tareas")
-      "* TODO %?\ndeadline: %^{fecha tope}t")
+      "* TODO %?\nDEADLINE: %^{fecha tope}t")
      ("t" "TODO" entry
       (file+headline "~/Sync/org/inbox.org" "tareas")
       "* TODO %?\n")
-     ("n" "nota" entry
+     ("n" "Nota" entry
       (file+headline "~/Sync/org/inbox.org" "notas")
       "* %?\n%c")
-     ("h" "nota alerta" entry
+     ("h" "Nota alerta" entry
       (file+headline "~/proyectos/hugo-sge/content-org/pie.org" "notas de alerta")
       (function org-hugo-new-subtree-post-capture-template)
       :prepend t)
-     ("r" "recordatorio" entry
+     ("r" "Recordatorio" entry
       (file "~/Sync/org/recuerda.org")
       "* %?\n %^t")
-     ("d" "diario" entry
+     ("d" "Diario" entry
       (file+olp+datetree "~/Sync/org/diario.org")
       "** %?" :time-prompt t)
-     ("r" "reunion" entry
+     ("R" "Reunion" entry
       (file+headline "~/Sync/org/inbox.org" "reuniones")
       "* TODO %? :reunion:\n%^t %^{lugar}p")
-     ("i" "informe" entry
+     ("i" "Informe" entry
       (file+headline "~/Sync/org/informes.org" "2019")
-      "* TODO %? %^g\n:properties:\n
+      "* TODO %? %^g\n:PROPERTIES:\n
                           :solicitante: %^{solicitante|sge|sgt|vice}\n
                           :f_entrada: %^u\n
                           :f_respuesta: \n:end:\n")))
