@@ -375,7 +375,7 @@ Usamos el cursor tipo barra (|) en la ventana activa y el tipo hollow en las dem
   (use-package emacs
     :config
     ;; (set-frame-font "Hack 12" t t)
-    (set-face-attribute 'default nil :font "Hack 12"))
+    (set-face-attribute 'default nil :font "Hack 14"))
 
 #+end_src
 
