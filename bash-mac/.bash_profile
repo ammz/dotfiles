@@ -59,7 +59,7 @@ export GREP_OPTIONS='--color=auto'
 # fichero en "/etc/paths.d" con éstas definidas en él. Se puede ver el fichero
 # /etc/paths.d/TeX como ejemplo. Debe ser instalado por defecto por MacTeX.
 
-# export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/usr/local/sbin:$PATH
 
 # Si usamos "ConTeXt Suite" debemos desmarcar la siguiente línea. Hay alguna
 # incompatibilidad con las rutas. Si queremos utilizar latex habrá que marcarla
