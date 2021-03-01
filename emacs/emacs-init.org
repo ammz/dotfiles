@@ -11,7 +11,7 @@ Dado que vengo usando diferentes equipos y sistemas operativos (linux, mac), he 
 
 Me he apoyado en distintas referencias. Las más usadas han sido:
 
-- https://github.com/andreyorst/dotfiles/raw/master/.config/emacs/README.org
+- https://gitlab.com/andreyorst/dotfiles/-/blob/master/README.md
 - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
 - https://github.com/daviwil/dotfiles/raw/master/Emacs.org
 
