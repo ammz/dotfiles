@@ -512,6 +512,7 @@ Configuración del teclado en OS X
     ;; Esta configuración funciona con la versión de emacs (Emacs Plus):
     ;; https://github.com/d12frosted/homebrew-emacs-plus#emacs-configuration
     ;; También es necesario configurar el teclado con 'Karabiner-elements'
+    (setq mac-pass-command-to-system nil)	;command-h no se gestiona por OS X
     (setq mac-command-modifier 'control)
     (setq mac-right-command-modifier 'meta)
     (setq mac-option-modifier 'meta)
