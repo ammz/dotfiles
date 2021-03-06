@@ -1320,7 +1320,6 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
 ** Org-mode
 
 #+begin_src emacs-lisp
-
   (use-package org
     :straight org-plus-contrib
     :config
@@ -1351,34 +1350,34 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
     ;; capture, refile, todo
     ;; -------------------------------------------------------------------
     (setq org-capture-templates
-     '(("o" "TODO vencimiento" entry
-        (file+headline "~/Sync/org/inbox.org" "tareas")
-        "* TODO %?\nDEADLINE: %^{fecha tope}t")
-       ("t" "TODO" entry
-        (file+headline "~/Sync/org/inbox.org" "tareas")
-        "* TODO %?\n")
-       ("n" "Nota" entry
-        (file+headline "~/Sync/org/inbox.org" "notas")
-        "* %?\n%c")
-       ("h" "Nota alerta" entry
-        (file+headline "~/proyectos/hugo-sge/content-org/pie.org" "notas de alerta")
-        (function org-hugo-new-subtree-post-capture-template)
-        :prepend t)
-       ("r" "Recordatorio" entry
-        (file "~/Sync/org/recuerda.org")
-        "* %?\n %^t")
-       ("d" "Diario" entry
-        (file+olp+datetree "~/Sync/org/diario.org")
-        "** %?" :time-prompt t)
-       ("R" "Reunion" entry
-        (file+headline "~/Sync/org/inbox.org" "reuniones")
-        "* TODO %? :reunion:\n%^t %^{lugar}p")
-       ("i" "Informe" entry
-        (file+headline "~/Sync/org/informes.org" "2019")
-        "* TODO %? %^g\n:PROPERTIES:\n
-                            :solicitante: %^{solicitante|sge|sgt|vice}\n
-                            :f_entrada: %^u\n
-                            :f_respuesta: \n:end:\n")))
+          '(("o" "TODO vencimiento" entry
+             (file+headline "~/Sync/org/inbox.org" "tareas")
+             "* TODO %?\nDEADLINE: %^{fecha tope}t")
+            ("t" "TODO" entry
+             (file+headline "~/Sync/org/inbox.org" "tareas")
+             "* TODO %?\n")
+            ("n" "Nota" entry
+             (file+headline "~/Sync/org/inbox.org" "notas")
+             "* %?\n%c")
+            ("h" "Nota alerta" entry
+             (file+headline "~/proyectos/hugo-sge/content-org/pie.org" "notas de alerta")
+             (function org-hugo-new-subtree-post-capture-template)
+             :prepend t)
+            ("r" "Recordatorio" entry
+             (file "~/Sync/org/recuerda.org")
+             "* %?\n %^t")
+            ("d" "Diario" entry
+             (file+olp+datetree "~/Sync/org/diario.org")
+             "** %?" :time-prompt t)
+            ("R" "Reunion" entry
+             (file+headline "~/Sync/org/inbox.org" "reuniones")
+             "* TODO %? :reunion:\n%^t %^{lugar}p")
+            ("i" "Informe" entry
+             (file+headline "~/Sync/org/informes.org" "2019")
+             "* TODO %? %^g\n:PROPERTIES:\n
+                             :solicitante: %^{solicitante|sge|sgt|vice}\n
+                             :f_entrada: %^u\n
+                             :f_respuesta: \n:end:\n")))
 
     ;; Scanea los target de refile en los archivos de la agenda. Aumenta
     ;; los niveles en los que encontrar posibles encabezamientos para
@@ -1412,28 +1411,28 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
     ;; -------------------------------------------------------------------
     (setq org-latex-pdf-process '("latexmk -lualatex"))
     (setq org-latex-packages-alist
-     '(("auto" "polyglossia" t ("xelatex" "lualatex"))
-       ("" "fontspec" nil ("xelatex" "lualatex"))
-       ("" "unicode-math" nil ("xelatex" "lualatex"))))
+          '(("auto" "polyglossia" t ("xelatex" "lualatex"))
+            ("" "fontspec" nil ("xelatex" "lualatex"))
+            ("" "unicode-math" nil ("xelatex" "lualatex"))))
     (setq org-latex-clasess
-     '(("article" "\\documentclass[12pt,a4paper]{article}"
-        ("\\section{%s}" . "\\section*{%s}")
-        ("\\subsection{%s}" . "\\subsection*{%s}")
-        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-        ("\\paragraph{%s}" . "\\paragraph*{%s}")
-        ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-       ("report" "\\documentclass[12pt,a4paper]{report}"
-        ("\\part{%s}" . "\\part*{%s}")
-        ("\\chapter{%s}" . "\\chapter*{%s}")
-        ("\\section{%s}" . "\\section*{%s}")
-        ("\\subsection{%s}" . "\\subsection*{%s}")
-        ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-       ("book" "\\documentclass[12pt,a4paper]{book}"
-        ;; ("\\part{%s}" . "\\part*{%s}")
-        ("\\chapter{%s}" . "\\chapter*{%s}")
-        ("\\section{%s}" . "\\section*{%s}")
-        ("\\subsection{%s}" . "\\subsection*{%s}")
-        ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+          '(("article" "\\documentclass[12pt,a4paper]{article}"
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+             ("\\paragraph{%s}" . "\\paragraph*{%s}")
+             ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+            ("report" "\\documentclass[12pt,a4paper]{report}"
+             ("\\part{%s}" . "\\part*{%s}")
+             ("\\chapter{%s}" . "\\chapter*{%s}")
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+            ("book" "\\documentclass[12pt,a4paper]{book}"
+             ;; ("\\part{%s}" . "\\part*{%s}")
+             ("\\chapter{%s}" . "\\chapter*{%s}")
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
 
     ;; -------------------------------------------------------------------
     ;; codigo
@@ -1447,14 +1446,14 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
     ;; general
     ;; -------------------------------------------------------------------
     (setq org-structure-template-alist
-     '(("s" . "SRC")
-       ("e" . "SRC emacs-lisp")
-       ("E" . "EXAMPLE")
-       ("q" . "QUOTE")
-       ("v" . "VERSE")
-       ("V" . "VERBATIM")
-       ("c" . "CENTER")
-       ("C" . "COMMENT")))
+          '(("s" . "SRC")
+            ("e" . "SRC emacs-lisp")
+            ("E" . "EXAMPLE")
+            ("q" . "QUOTE")
+            ("v" . "VERSE")
+            ("V" . "VERBATIM")
+            ("c" . "CENTER")
+            ("C" . "COMMENT")))
 
     (setq org-ellipsis " »")
 
@@ -1502,8 +1501,8 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
     :after org
     :hook
     (org-mode-hook . (lambda ()
-                  (define-key org-mode-map
-                    (kbd "C-c g") 'org-mac-grab-link))))
+                       (define-key org-mode-map
+                         (kbd "C-c g") 'org-mac-grab-link))))
 
   (use-package ob-async
     :straight t)
