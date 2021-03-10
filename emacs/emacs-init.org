@@ -1528,6 +1528,18 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
       (setq pub-dir (concat org-export-output-directory-prefix (substring extension 1)))
       (when (not (file-directory-p pub-dir))
         (make-directory pub-dir))))
+
+  ;; El nombre el fichero exportado incorpora la fecha de exportación
+  (defun modi/org-advice-prefix-export-file-name-with-date (orig-fun &rest args)
+    "Prefix the output file name with current date."
+    (let* ((date-format "%Y-%m-%d")       ;Customize this variable as you like
+           (date-file-separator "-")      ;Customize this variable as you like
+           (orig-output-file-name (apply orig-fun args))
+           (orig-output-dir (file-name-directory orig-output-file-name))
+           (orig-output-just-file-name (file-name-nondirectory orig-output-file-name))
+           (date (format-time-string date-format (current-time))))
+      (concat orig-output-dir date date-file-separator orig-output-just-file-name)))
+  (advice-add 'org-export-output-file-name :around #'modi/org-advice-prefix-export-file-name-with-date)
 #+END_SRC
 
 ** COMMENT org-roam
