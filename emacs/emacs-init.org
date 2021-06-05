@@ -542,14 +542,15 @@ Por defecto, activamos los números de líneas en todos los modos. No obstante, 
 #+begin_SRC emacs-lisp
 
   (use-package display-line-numbers
+    :straight t
     :config
     (column-number-mode)
-    (setq global-display-line-numbers-mode t)
+    (global-display-line-numbers-mode)
     (setq display-line-numbers-grow-only t)
     ;; Deshabilita los números de línea en algunos modos
     (dolist (mode '(org-mode-hook
                     term-mode-hook
-				    dired-mode-hook
+                    dired-mode-hook
                     shell-mode-hook
                     eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode 0)))))
