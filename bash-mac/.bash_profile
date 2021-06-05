@@ -81,6 +81,8 @@ export INFOPATH=/usr/local/share/info:/usr/local/share/info/emacs:/usr/share/inf
 # Para activar los ficheros ejecutables de mysql
 export PATH=/usr/local/mysql/bin:$PATH
 
+# Lenguaje go
+export PATH=$PATH:/usr/local/go/bin
 
 export DISPLAY=:0.0
 
