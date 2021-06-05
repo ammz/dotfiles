@@ -373,8 +373,10 @@ Usamos el cursor tipo barra (|) en la ventana activa y el tipo hollow en las dem
 
   (use-package emacs
     :config
-    ;; (set-frame-font "Hack 12" t t)
-    (set-face-attribute 'default nil :font "Hack 14"))
+
+    (set-face-attribute 'default nil :family "Hack" :height 140)
+    (set-face-attribute 'fixed-pitch nil :family "Hack" :height 1.0)
+    (set-face-attribute 'variable-pitch nil :family "Iosevka" :height 1.0))
 
 #+end_src
 
