@@ -21,7 +21,7 @@
 (unless (eq system-type 'darwin)		; Solo si no es Os X
   (menu-bar-mode -1))					; Deshabilita la menubar
 (scroll-bar-mode -1)					; Deshabilita la scrollbar
-(tool-bar-mode -1) 						; Deshabilita la toolbar
+(tool-bar-mode -1) 					; Deshabilita la toolbar
 
 (defvar bootstrap-version)
 (let ((bootstrap-file

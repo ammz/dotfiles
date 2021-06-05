@@ -2,7 +2,6 @@
 #+AUTHOR: Antonio Moreno
 #+PROPERTY: header-args :emacs-lisp :tangle ~/dotfiles/emacs/.emacs.d/init.el :results silent
 
-
 * Sobre este documento
 
 Este fichero contiene la documentación así como el código de la configuración de =Emacs=, que viene siendo la aplicación que más utilizo en el día a día (programación, gestión de tareas, escritos, ...).
@@ -45,7 +44,7 @@ stow emacs
 :header-args+: :tangle "~/dotfiles/emacs/.emacs.d/early-init.el"
 :END:
 
-Aunque suelo tener funcionando Emacs todo el tiempo, hay veces que no. En esos casos siempre quiero que cuando lo necesite arranque lo más rápido posible
+Aunque suelo tener funcionando Emacs todo el tiempo, hay veces que no. En esos casos siempre quiero que, cuando lo necesite, arranque lo más rápido posible.
 
 A partir de Emacs 27, la inicilización del programa ha cambiado. Ahora todo lo que queramos hacer antes del arranque del programa lo tendremos que indicar en el fichero =early-init.el=. Por tanto, crearemos este fichero con algunas configuraciones.
 
@@ -104,7 +103,7 @@ Deshabilitamos algunos elementos de la interfaz gráfica lo antes posible para q
   (unless (eq system-type 'darwin)		; Solo si no es Os X
     (menu-bar-mode -1))					; Deshabilita la menubar
   (scroll-bar-mode -1)					; Deshabilita la scrollbar
-  (tool-bar-mode -1) 						; Deshabilita la toolbar
+  (tool-bar-mode -1) 					; Deshabilita la toolbar
 
 #+end_SRC
 
@@ -179,7 +178,7 @@ Aquí finaliza el fichero =early-init.el=.
 
 * =use-package=
 
-Este paquete facilita la instalación, carga y configuración de los /paquetes/ (incluyendo las librerías que vienen con Emacs.). Este paquete ya debería estar instalado con =straight.el=. Solo nos queda /requerirlo/:
+Este paquete facilita la instalación, carga y configuración de los /paquetes/ (incluyendo las librerías que vienen con Emacs). Este paquete ya debería estar instalado con =straight.el=. Solo nos queda /requerirlo/:
 
 #+begin_SRC emacs-lisp
 
@@ -2228,7 +2227,6 @@ Es necesario activar el comando manualmente pulsando =C-h= tras comenzar la secu
     (which-key-mode 1))
 
 #+end_SRC
-
 
 * Calendario y agenda en español
 
