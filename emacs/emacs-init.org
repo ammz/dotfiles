@@ -888,7 +888,7 @@ Guarda el estado en el que estaba Emacs: nombre, posición de los buffers y simi
     :disabled
     :config
     (setq desktop-dirname user-emacs-directory)
-    (setq desktop-base-file-name "desktop")
+    (setq desktop-base-fileq-name "desktop")
     (setq desktop-missing-file-warning t)
     (setq desktop-restore-eager 3)
     :hook (after-init-hook . (lambda () (desktop-save-mode 1))))
@@ -1474,29 +1474,31 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
     ;; latex
     ;; -------------------------------------------------------------------
     (setq org-latex-pdf-process '("latexmk -lualatex"))
-    (setq org-latex-packages-alist
-          '(("auto" "polyglossia" t ("xelatex" "lualatex"))
-            ("" "fontspec" nil ("xelatex" "lualatex"))
-            ("" "unicode-math" nil ("xelatex" "lualatex"))))
-    (setq org-latex-clasess
-          '(("article" "\\documentclass[12pt,a4paper]{article}"
+    (setq org-latex-compiler "lualatex")
+    ;; (setq org-latex-packages-alist
+    ;;       '(("AUTO" "babel" t ("xelatex" "lualatex"))
+    ;;         ("" "fontspec" nil ("xelatex" "lualatex"))
+    ;;         ("" "unicode-math" nil ("xelatex" "lualatex"))))
+    (setq org-latex-classes
+          '(("article" "\\documentclass[spanish,a4paper]{article}"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
              ("\\paragraph{%s}" . "\\paragraph*{%s}")
              ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-            ("report" "\\documentclass[12pt,a4paper]{report}"
+            ("report" "\\documentclass[spanish,a4paper]{report}"
              ("\\part{%s}" . "\\part*{%s}")
              ("\\chapter{%s}" . "\\chapter*{%s}")
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
              ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-            ("book" "\\documentclass[12pt,a4paper]{book}"
+            ("book" "\\documentclass[spanish,a4paper]{book}"
              ;; ("\\part{%s}" . "\\part*{%s}")
              ("\\chapter{%s}" . "\\chapter*{%s}")
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
-             ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+            ))
 
     ;; -------------------------------------------------------------------
     ;; codigo
@@ -1509,6 +1511,8 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
     ;; -------------------------------------------------------------------
     ;; general
     ;; -------------------------------------------------------------------
+    (setq org-hide-emphasis-markers t)
+
     (setq org-structure-template-alist
           '(("s" . "SRC")
             ("e" . "SRC emacs-lisp")
@@ -1581,30 +1585,47 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines))
 
-  ;; Permite que las exportaciones se guarden en directorios diferentes
-  ;; (export_html, export_odt, etc) según el tipo de fichero a obtener
-  (defvar org-export-output-directory-prefix
-    "export_" "prefix of directory used for org-mode export")
-
-  (defadvice org-export-output-file-name (before org-add-export-dir activate)
-    "Modifies org-export to place exported files in a different directory"
-    (when (not pub-dir)
-      (setq pub-dir (concat org-export-output-directory-prefix (substring extension 1)))
-      (when (not (file-directory-p pub-dir))
-        (make-directory pub-dir))))
-
-  ;; El nombre el fichero exportado incorpora la fecha de exportación
-  (defun modi/org-advice-prefix-export-file-name-with-date (orig-fun &rest args)
-    "Prefix the output file name with current date."
-    (let* ((date-format "%Y-%m-%d")       ;Customize this variable as you like
-           (date-file-separator "-")      ;Customize this variable as you like
-           (orig-output-file-name (apply orig-fun args))
-           (orig-output-dir (file-name-directory orig-output-file-name))
-           (orig-output-just-file-name (file-name-nondirectory orig-output-file-name))
-           (date (format-time-string date-format (current-time))))
-      (concat orig-output-dir date date-file-separator orig-output-just-file-name)))
-  (advice-add 'org-export-output-file-name :around #'modi/org-advice-prefix-export-file-name-with-date)
+  ;; ;; Permite que las exportaciones se guarden en directorios diferentes
+  ;; ;; (export_html, export_odt, etc) según el tipo de fichero a obtener
+  ;; (defvar org-export-output-directory-prefix
+  ;;   "export_" "prefix of directory used for org-mode export")
+  ;;
+  ;; (if (org-export-derived-backend-p org-export-current-backend 'html 'latex)
+  ;;     (defadvice org-export-output-file-name (before org-add-export-dir activate)
+  ;;       "Modifies org-export to place exported files in a different directory"
+  ;;       (when (not pub-dir)
+  ;;         (setq pub-dir (concat org-export-output-directory-prefix (substring extension 1)))
+  ;;         (when (not (file-directory-p pub-dir))
+  ;;           (make-directory pub-dir)))))
+  ;;
+  ;; ;; El nombre el fichero exportado incorpora la fecha de exportación
+  ;; (defun modi/org-advice-prefix-export-file-name-with-date (orig-fun &rest args)
+  ;;   "Prefix the output file name with current date."
+  ;;   (let* ((date-format "%Y-%m-%d")       ;Customize this variable as you like
+  ;;          (date-file-separator "-")      ;Customize this variable as you like
+  ;;          (orig-output-file-name (apply orig-fun args))
+  ;;          (orig-output-dir (file-name-directory orig-output-file-name))
+  ;;          (orig-output-just-file-name (file-name-nondirectory orig-output-file-name))
+  ;;          (date (format-time-string date-format (current-time))))
+  ;;     (concat orig-output-dir date date-file-separator orig-output-just-file-name)))
+  ;; (advice-add 'org-export-output-file-name :around #'modi/org-advice-prefix-export-file-name-with-date)
 #+END_SRC
+*** Clase para la publicación de la ETEA
+#+begin_SRC emacs-lisp
+  (add-to-list 'org-latex-classes
+               '("etea"
+                 "\\documentclass[spanish,a4paper]{book}
+                  \\usepackage{base-ammz}
+                  \\usepackage{etea}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+                 ;; ("\\part{%s}" . "\\part*{%s}")
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+#+end_SRC
 
 ** COMMENT org-roam
 
