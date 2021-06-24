@@ -181,9 +181,7 @@ Aquí finaliza el fichero =early-init.el=.
 Este paquete facilita la instalación, carga y configuración de los /paquetes/ (incluyendo las librerías que vienen con Emacs). Este paquete ya debería estar instalado con =straight.el=. Solo nos queda /requerirlo/:
 
 #+begin_SRC emacs-lisp
-
   (require 'use-package)
-
 #+end_SRC
 
 * Configuración básica
@@ -206,10 +204,8 @@ Además de útil para la gestión del email, algunos modos pueden usar estos dat
 ** Directorio por defecto
 
 #+begin_SRC emacs-lisp
-
   ;; Directorio de inicio tras C-x C-f
   (setq default-directory "~/")
-
 #+end_SRC
 
 ** Actualiza el load-path
@@ -217,7 +213,7 @@ Además de útil para la gestión del email, algunos modos pueden usar estos dat
 El directorio con el código lisp propio hay que incluirlo en el load-path.
 
 #+begin_SRC emacs-lisp
-(push "~/.emacs.d/lisp" load-path)
+  (push "~/.emacs.d/lisp" load-path)
 #+end_SRC
 
 ** Backups
@@ -225,13 +221,11 @@ El directorio con el código lisp propio hay que incluirlo en el load-path.
 Colocamos los ficheros backup en un único directorio, en vez de estar repartidos por todas partes.
 
 #+begin_src emacs-lisp
-
   (use-package files
     ;; :straight nil
     :config
     (setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
     (setq create-lockfiles nil))
-
 #+END_SRC
 
 ** Más pequeños ajustes
@@ -243,7 +237,6 @@ Colocamos los ficheros backup en un único directorio, en vez de estar repartido
 - Elimina los avisos sonoros
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :init
     (setq frame-title-format '("%b -  %I"))
@@ -257,7 +250,6 @@ Colocamos los ficheros backup en un único directorio, en vez de estar repartido
     (put 'upcase-region 'disabled nil)	; =C-x C-u=
     (put 'downcase-region 'disabled nil)	; =C-x C-l=
     (put 'dired-find-alternate-file 'disabled nil))
-
 #+end_SRC
 
 ** Custom.el
@@ -265,7 +257,6 @@ Colocamos los ficheros backup en un único directorio, en vez de estar repartido
 Almacenamos en un fichero separado el código elisp que Emacs añade al instalar algunos paquetes o usar los interfaces de configuración.
 
 #+begin_src emacs-lisp
-
   (use-package cus-edit
     ;; :straight nil
     :config
@@ -273,7 +264,6 @@ Almacenamos en un fichero separado el código elisp que Emacs añade al instalar
     (unless (file-exists-p custom-file)
       (make-empty-file custom-file))
     (load custom-file))
-
 #+end_src
 
 ** Registro del histórico
@@ -282,14 +272,12 @@ Almacenamos en un fichero separado el código elisp que Emacs añade al instalar
 Este modo realiza un seguimiento de los ficheros que teníamos abiertos, permitiendo volver a ellos rápidamente.
 
 #+begin_src emacs-lisp
-
   (use-package recentf
     :config
     (setq recentf-save-file (expand-file-name "recentf" user-emacs-directory))
     (setq recentf-max-menu-items 10)
     (setq recentf-exclude '(".gz" ".xz" ".zip" "/elpa/" "/ssh:" "/sudo:"))
     :hook (after-init-hook . recentf-mode))
-
 #+end_src
 
 *** Minibuffer
@@ -297,13 +285,11 @@ Este modo realiza un seguimiento de los ficheros que teníamos abiertos, permiti
 Mantiene un registro de las acciones del minibuffer
 
 #+begin_src emacs-lisp
-
   (use-package savehist
     :config
     (setq savehist-file (expand-file-name "savehist" user-emacs-directory))
     (setq savehist-save-minibuffer-history t)
     (savehist-mode 1))
-
 #+end_src
 
 *** Posición del cursor
@@ -311,12 +297,10 @@ Mantiene un registro de las acciones del minibuffer
 Recuerda donde están los /points/ en cualquier fichero.
 
 #+begin_src emacs-lisp
-
   (use-package saveplace
     :config
     (setq save-place-file (expand-file-name "saveplace" user-emacs-directory))
     (save-place-mode 1))
-
 #+END_SRC
 
 ** Selección
@@ -324,10 +308,8 @@ Recuerda donde están los /points/ en cualquier fichero.
 Este modo elimina la región marcada cuando se inserta directamente sobre ella.
 
 #+begin_src emacs-lisp
-
   (use-package delsel
     :hook (after-init-hook . delete-selection-mode))
-
 #+end_SRC
 
 * Mejorando la estética
@@ -346,11 +328,9 @@ Eliminamos la pantalla de Emacs muestra cuando se inicia sin un fichero.
 
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package emacs
     :config
     (set-fringe-mode 10))				; Give some breathing room
-
 #+END_SRC
 
 ** Cursor
@@ -358,26 +338,21 @@ Eliminamos la pantalla de Emacs muestra cuando se inicia sin un fichero.
 Usamos el cursor tipo barra (|) en la ventana activa y el tipo hollow en las demás
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :config
     (setq cursor-type 'bar)
     (setq cursor-in-non-selected-windows 'hollow)
     (setq x-stretch-cursor nil))
-
 #+end_SRC
 
 ** Tipo de letra
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :config
-
     (set-face-attribute 'default nil :family "Hack" :height 140)
     (set-face-attribute 'fixed-pitch nil :family "Hack" :height 1.0)
     (set-face-attribute 'variable-pitch nil :family "Iosevka" :height 1.0))
-
 #+end_src
 
 ** Configuración del modeline
@@ -387,35 +362,31 @@ Usamos el cursor tipo barra (|) en la ventana activa y el tipo hollow en las dem
 El nombre de un modo en el modeline se denomina 'lighter'. Con este paquete se puede editar, renombrar u ocultar éstos. (la información aún estará disponible ejecutando =C-h m=). Además, la funcionalidad puede integrarse en la declaración de cada paquete de =use-package=: etiqueta =:delight=.
 
 #+begin_SRC emacs-lisp
-
-(use-package delight
-  :straight t
-  :after use-package)
-
+  (use-package delight
+    :straight t
+    :after use-package)
 #+end_SRC
 
 *** Iconos y doom-modeline
 
   #+begin_SRC emacs-lisp
+    (use-package all-the-icons
+      :straight t
+      :if (display-graphic-p)
+      :commands all-the-icons-install-fonts
+      :init
+      (unless (find-font (font-spec :name "all-the-icons"))
+        (all-the-icons-install-fonts t)))
 
-  (use-package all-the-icons
-    :straight t
-    :if (display-graphic-p)
-    :commands all-the-icons-install-fonts
-    :init
-    (unless (find-font (font-spec :name "all-the-icons"))
-      (all-the-icons-install-fonts t)))
+    (use-package all-the-icons-dired
+      :disabled
+      :straight t
+      :if (display-graphic-p)
+      :hook (dired-mode-hook . all-the-icons-dired-mode))
 
-  (use-package all-the-icons-dired
-    :disabled
-    :straight t
-    :if (display-graphic-p)
-    :hook (dired-mode-hook . all-the-icons-dired-mode))
-
-  (use-package doom-modeline
-    :straight t
-    :init (doom-modeline-mode 1))
-
+    (use-package doom-modeline
+      :straight t
+      :init (doom-modeline-mode 1))
   #+end_SRC
 
 ** Temas
@@ -423,28 +394,23 @@ El nombre de un modo en el modeline se denomina 'lighter'. Con este paquete se p
 *** COMMENT Material
 
 #+begin_SRC emacs-lisp
-
   (use-package material-theme
     :straight t)
 
   (load-theme 'material t)
-
 #+end_SRC
 
 *** COMMENT Doom
 
 #+begin_SRC emacs-lisp
-
   (use-package doom-themes
     :disabled
     :straight t)
-
 #+end_SRC
 
 *** Modus
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package modus-themes
     :ensure
     :init
@@ -459,7 +425,6 @@ El nombre de un modo en el modeline se denomina 'lighter'. Con este paquete se p
     ;; Load the theme of your choice:
     (modus-themes-load-operandi) ;; OR (modus-themes-load-vivendi)
     :bind ("<f5>" . modus-themes-toggle))
-
 #+end_SRC
 
 Personalización del tema
@@ -542,7 +507,6 @@ Personalización del tema
 Por defecto, activamos los números de líneas en todos los modos. No obstante, lo desactivamos en algunos como org-mode, dired y las terminales.
 
 #+begin_SRC emacs-lisp
-
   (use-package display-line-numbers
     :straight t
     :config
@@ -556,7 +520,6 @@ Por defecto, activamos los números de líneas en todos los modos. No obstante, 
                     shell-mode-hook
                     eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode 0)))))
-
 #+end_SRC
 
 ** Específico para OS X
@@ -564,7 +527,6 @@ Por defecto, activamos los números de líneas en todos los modos. No obstante, 
 Configuración del teclado en OS X
 
 #+BEGIN_SRC emacs-lisp
-
   (when (eq system-type 'darwin)
     (setq ns-pop-up-frames t)
     (setq ns-function-modifier (quote super))
@@ -581,13 +543,11 @@ Configuración del teclado en OS X
     (setq mac-right-command-modifier 'meta)
     (setq mac-option-modifier 'meta)
     (setq mac-right-option-modifier '(:function alt :mouse alt)))
-
 #+End_SRC
 
 En OS X, Emacs no toma algunas variables de entorno si no se inicia desde el shell. Vamos a corregirlo.
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package exec-path-from-shell
     :straight t
     :if (memq window-system '(mac ns x))
@@ -597,7 +557,6 @@ En OS X, Emacs no toma algunas variables de entorno si no se inicia desde el she
     (exec-path-from-shell-copy-envs '("LANG" "WORKON_HOME"))
     :config
     (exec-path-from-shell-initialize))
-
 #+END_SRC
 
 * Manejo de las ventanas
@@ -608,10 +567,8 @@ En OS X, Emacs no toma algunas variables de entorno si no se inicia desde el she
 | C-c right | winner-redo |
 
 #+begin_SRC emacs-lisp
-
   (use-package winner
       :config (winner-mode))
-
 #+end_SRC
 
 ** Elimina las ventanas help
@@ -629,12 +586,10 @@ Cuando se abre una ventana con un buffer help es dificil eliminarla ya que el pu
 Numera las ventanas y podemos situarnos en ellas con Alt-<num>.
 
 #+begin_src emacs-lisp
-
   (use-package window-numbering
     :straight t
     :config
     (window-numbering-mode))
-
 #+end_src
 
 * Herramientas
@@ -642,7 +597,6 @@ Numera las ventanas y podemos situarnos en ellas con Alt-<num>.
 ** Focus
 
 #+begin_SRC emacs-lisp
-
   (use-package visual-fill-column
     :straight t)
 
@@ -655,7 +609,6 @@ Numera las ventanas y podemos situarnos en ellas con Alt-<num>.
     :hook
     (org-mode-hook . ammz/org-mode-visual-fill)
     (ConTeXt-mode-hook . ammz/org-mode-visual-fill))
-
 #+end_SRC
 
 ** Emacs server
@@ -663,16 +616,13 @@ Numera las ventanas y podemos situarnos en ellas con Alt-<num>.
 Permite que =emacsclient= (con o sin =--create-frame=) comparta el proceso de ejecución de emacs. El servidor persistirá mientras exista un frame asociado a dicho servidor.
 
 #+begin_src emacs-lisp
-
   (use-package server
     :hook (after-init-hook . server-start))
-
 #+end_src
 
 ** Comentarios
 
 #+begin_src emacs-lisp
-
   (use-package newcomment
     :config
     (setq comment-empty-lines t)
@@ -680,14 +630,12 @@ Permite que =emacsclient= (con o sin =--create-frame=) comparta el proceso de ej
     (setq comment-style 'multi-line)
     :bind ("C-;" . comment-dwim)
     )
-
 #+end_SRC
 ** Origami - Plegado de código
 
 Origami - Does code folding, ie hide the body of an if/else/for/function so that you can fit more code on your screen
 
 #+begin_src emacs-lisp
-
   (use-package origami
     :straight t
     :commands (origami-mode)
@@ -711,7 +659,6 @@ Origami - Does code folding, ie hide the body of an if/else/for/function so that
     :init
     (add-hook 'prog-mode-hook 'origami-mode)
     )
-
 #+end_SRC
 
 ** Dired (gestor de ficheros)
@@ -726,35 +673,29 @@ Origami - Does code folding, ie hide the body of an if/else/for/function so that
     ;; :custom ((dired-listing-switches "-agho --group-directories-first"))
     :bind (:map dired-mode-map
                 ("b" . dired-up-directory)))
-
 #+end_SRC
 
 *** dired-subtree (navegación tipo árbol)
 
 #+begin_src emacs-lisp
-
   (use-package dired-subtree
     :straight t
     :after dired
     :bind (:map dired-mode-map
                 ("<tab>" . dired-subtree-toggle)
                 ("<S-tab>" . dired-subtree-remove)))
-
 #+end_SRC
 ** Magit (Interfaz para Git)
 
 #+begin_src emacs-lisp
-
   (use-package magit
     :straight t
     :bind (("C-c g" . magit-status)))
-
 #+END_SRC
 
 El siguiente paquete está configurado conforme la guía de este artículo [[https://chris.beams.io/posts/git-commit/][Writing a Git commit message]].
 
 #+begin_src emacs-lisp
-
   (use-package git-commit
     :after magit
     :custom
@@ -772,18 +713,15 @@ El siguiente paquete está configurado conforme la guía de este artículo [[htt
     (git-commit-style-convention-checks
      '(non-empty-second-line
        overlong-summary-line)))
-
 #+END_SRC
 
 La siguiente configuración es para las pantallas diff que produce Magit.
 
 #+begin_src emacs-lisp
-
   (use-package magit-diff
     :after magit
     :custom
     (magit-diff-refine-hunk t))
-
 #+END_SRC
 ** Trabajando con buffers
 
@@ -792,19 +730,16 @@ Estos ajustes facilitan trabajar con múltiples buffers. Cuando tienen el mismo 
 Todas estas operaciones se revierten cuando un buffer se quita de la lista de afectados.
 
 #+begin_src emacs-lisp
-
   (use-package uniquify
     :custom
     (uniquify-buffer-name-style 'post-forward-angle-brackets)
     (uniquify-strip-common-suffix t)
     (uniquify-after-kill-buffer-p t))
-
 #+END_SRC
 
 *** Configuración de ibuffer
 
 #+begin_src emacs-lisp
-
   (use-package ibuffer
     :custom
     (ibuffer-expert t)
@@ -875,7 +810,6 @@ Todas estas operaciones se revierten cuando un buffer se quita de la lista de af
     :bind (("C-x C-b" . ibuffer)
            ("C-x C-S-b" . prot/ibuffer-multi) ; EXPERIMENTAL
            ))
-
 #+END_SRC
 
 ** Emacs "desktop"
@@ -883,7 +817,6 @@ Todas estas operaciones se revierten cuando un buffer se quita de la lista de af
 Guarda el estado en el que estaba Emacs: nombre, posición de los buffers y similares.
 
 #+begin_src emacs-lisp
-
   (use-package desktop
     :disabled
     :config
@@ -892,13 +825,11 @@ Guarda el estado en el que estaba Emacs: nombre, posición de los buffers y simi
     (setq desktop-missing-file-warning t)
     (setq desktop-restore-eager 3)
     :hook (after-init-hook . (lambda () (desktop-save-mode 1))))
-
   #+end_src
 
 ** Atajos de teclado imprescindibles
 
 #+begin_src emacs-lisp
-
   (use-package emacs
       :bind
       (("C-." . repeat)
@@ -907,7 +838,6 @@ Guarda el estado en el que estaba Emacs: nombre, posición de los buffers y simi
        ;; ("M-}" . "}")
        ;; ("M-+" . "]")
        ))
-
 #+END_SRC
 
 * exwm: configuración de emacs como window manager
@@ -915,19 +845,16 @@ Guarda el estado en el que estaba Emacs: nombre, posición de los buffers y simi
 Carga la configuración del Escritorio así como el gestor de ventanas (EXWM) si éste es soportado por el sistema operativo y, además, se pasa el argumento =--use-exwm= en el arranque de Emacs. El código del gestor de ventanas (EXWM) se enecuentra en exwm.org.
 
 #+begin_src emacs-lisp
-
   (setq ammz/exwm-enabled (and (eq window-system 'x) ; Sólo sistemas con X Window
                              (seq-contains command-line-args "--use-exwm")))
 
   (when ammz/exwm-enabled
     (require 'ammz-exwm))
-
 #+end_src
 
 ** COMMENT Basic configuration
 
 #+begin_SRC emacs-lisp
-
   (use-package exwm
     :straight t)
 
@@ -941,13 +868,11 @@ Carga la configuración del Escritorio así como el gestor de ventanas (EXWM) si
   (add-hook 'exwm-update-class-hook
             (lambda ()
               (exwm-workspace-rename-buffer exwm-class-name)))
-
 #+end_SRC
 
 ** COMMENT Global keys
 
 #+begin_SRC emacs-lisp
-
   (unless (get 'exwm-input-global-keys 'saved-value)
     (setq exwm-input-global-keys
           '(([?\s-&] . (lambda (command)
@@ -1008,66 +933,56 @@ Carga la configuración del Escritorio así como el gestor de ventanas (EXWM) si
             ([XF86AudioPrev] . (lambda () (interactive) (start-process-shell-command "Previous" nil "playerctl previous")))
             ([XF86AudioStop] . (lambda () (interactive) (start-process-shell-command "Stop" nil "playerctl stop")))
             )))
-
 #+end_SRC
 
 ** COMMENT Simulation keys
 
   #+begin_SRC emacs-lisp
-
-  (unless (get 'exwm-input-simulation-keys 'saved-value)
-    (setq exwm-input-simulation-keys
-          '(([?\C-b] . [left])
-            ([?\C-f] . [right])
-            ([?\C-p] . [up])
-            ([?\C-n] . [down])
-            ([?\C-a] . [home])
-            ([?\C-e] . [end])
-            ([?\M-v] . [prior])
-            ([?\C-v] . [next])
-            ([?\C-d] . [delete])
-            ([?\C-k] . [S-end delete]))))
-
+    (unless (get 'exwm-input-simulation-keys 'saved-value)
+      (setq exwm-input-simulation-keys
+            '(([?\C-b] . [left])
+              ([?\C-f] . [right])
+              ([?\C-p] . [up])
+              ([?\C-n] . [down])
+              ([?\C-a] . [home])
+              ([?\C-e] . [end])
+              ([?\M-v] . [prior])
+              ([?\C-v] . [next])
+              ([?\C-d] . [delete])
+              ([?\C-k] . [S-end delete]))))
   #+end_SRC
 
 ** COMMENT systemtray
 
   #+begin_SRC emacs-lisp
-
-  ;; systemtray
-  ;; (require 'exwm-systemtray)
-  ;; (exwm-systemtray-enable)
-
+    ;; systemtray
+    ;; (require 'exwm-systemtray)
+    ;; (exwm-systemtray-enable)
   #+end_SRC
 
 ** COMMENT Multi-monitors
 
   #+begin_SRC emacs-lisp
-
-  ;; multi-monitors
-  (require 'exwm-randr)
-  (setq exwm-randr-workspace-output-plist '(0 "eDP1" 1 "HDMI1"))
-  (add-hook 'exwm-randr-screen-change-hook
-            (lambda ()
-              (start-process-shell-command
-               "xrandr" nil "xrandr --output eDP1 --off --output HDMI1 --auto")))
-  (exwm-randr-enable)
-
+    ;; multi-monitors
+    (require 'exwm-randr)
+    (setq exwm-randr-workspace-output-plist '(0 "eDP1" 1 "HDMI1"))
+    (add-hook 'exwm-randr-screen-change-hook
+              (lambda ()
+                (start-process-shell-command
+                 "xrandr" nil "xrandr --output eDP1 --off --output HDMI1 --auto")))
+    (exwm-randr-enable)
   #+end_SRC
 
 ** COMMENT Enable EXWM
 
   #+begin_SRC emacs-lisp
-
-  ;; Enable EXWM
-  (exwm-enable)
-
+    ;; Enable EXWM
+    (exwm-enable)
   #+end_SRC
 
 ** COMMENT Configure Ido
 
   #+begin_SRC emacs-lisp
-
     (require 'ido)
 
     (defun exwm-config--fix/ido-buffer-window-other-frame ()
@@ -1109,71 +1024,64 @@ Carga la configuración del Escritorio así como el gestor de ventanas (EXWM) si
 
     ;; Configure Ido
     (exwm-config-ido)
-
   #+end_SRC
 
 ** COMMENT Polybar
 
   #+begin_SRC emacs-lisp
+    ;; Polybar
+    (defvar ammz/polybar-process nil
+      "Guarda el proceso de la instancia Polybar, si existe")
 
-  ;; Polybar
-  (defvar ammz/polybar-process nil
-    "Guarda el proceso de la instancia Polybar, si existe")
+    (defun ammz/kill-panel ()
+      (interactive)
+      (when ammz/polybar-process
+        (ignore-errors
+          (kill-process ammz/polybar-process)))
+      (setq ammz/polybar-process nil))
 
-  (defun ammz/kill-panel ()
-    (interactive)
-    (when ammz/polybar-process
-      (ignore-errors
-        (kill-process ammz/polybar-process)))
-    (setq ammz/polybar-process nil))
+    (defun ammz/start-panel ()
+      (interactive)
+      (ammz/kill-panel)
+      (setq ammz/polybar-process (start-process-shell-command "polybar" nil "polybar --reload mainbar-exwm -c ~/.config/polybar/config")))
 
-  (defun ammz/start-panel ()
-    (interactive)
-    (ammz/kill-panel)
-    (setq ammz/polybar-process (start-process-shell-command "polybar" nil "polybar --reload mainbar-exwm -c ~/.config/polybar/config")))
-
-  (ammz/start-panel)
-
+    (ammz/start-panel)
   #+end_SRC
 
 ** COMMENT Selección workspace
 
   #+begin_SRC emacs-lisp
+    (defun ammz/go-next-workspace ()
+      "Cambia al siguiente workspace o reinicia desde el 0"
+      (interactive)
+      (let* ((ws (exwm-workspace--position (selected-frame)))
+             (ultimo (- (exwm-workspace--count) 1)))
+        (if (< ws ultimo)
+            (exwm-workspace-switch (+ ws 1))
+          (exwm-workspace-switch 0))
 
-  (defun ammz/go-next-workspace ()
-    "Cambia al siguiente workspace o reinicia desde el 0"
-    (interactive)
-    (let* ((ws (exwm-workspace--position (selected-frame)))
-           (ultimo (- (exwm-workspace--count) 1)))
-      (if (< ws ultimo)
-          (exwm-workspace-switch (+ ws 1))
-        (exwm-workspace-switch 0))
+        (if (equal ws ultimo)
+            (message "Estamos en el workspace 0")
+          (message "Estamos en el workspace %d" (+ ws 1)))))
 
-      (if (equal ws ultimo)
-          (message "Estamos en el workspace 0")
-        (message "Estamos en el workspace %d" (+ ws 1)))))
-
-  (defun ammz/go-previous-workspace ()
-    "Cambia al anterior workspace o reinicia desde el último"
-    (interactive)
-    (let* ((ws (exwm-workspace--position (selected-frame)))
-           (ultimo (- (exwm-workspace--count) 1)))
-      (if (> ws 0)
-          (exwm-workspace-switch (- ws 1))
-        (exwm-workspace-switch ultimo))
-      (if (equal ws 0)
-          (message "Estamos en el workspace %d" ultimo)
-      (message "Estamos en el workspace %d" (- ws 1)))))
-
+    (defun ammz/go-previous-workspace ()
+      "Cambia al anterior workspace o reinicia desde el último"
+      (interactive)
+      (let* ((ws (exwm-workspace--position (selected-frame)))
+             (ultimo (- (exwm-workspace--count) 1)))
+        (if (> ws 0)
+            (exwm-workspace-switch (- ws 1))
+          (exwm-workspace-switch ultimo))
+        (if (equal ws 0)
+            (message "Estamos en el workspace %d" ultimo)
+        (message "Estamos en el workspace %d" (- ws 1)))))
   #+end_SRC
 
 ** COMMENT dmenu
 
 #+begin_SRC emacs-lisp
-
-    (use-package dmenu
-      :straight t)
-
+  (use-package dmenu
+    :straight t)
 #+end_SRC
 
 * Métodos de búsqueda
@@ -1198,61 +1106,61 @@ Carga la configuración del Escritorio así como el gestor de ventanas (EXWM) si
 ** Marginalia
 
 #+begin_src emacs-lisp
-(use-package marginalia
-  :straight t
-  :demand
-  :config
-  (setq marginalia-annotators
-        '(marginalia-annotators-heavy
-          marginalia-annotators-light))
-  (marginalia-mode 1))
+  (use-package marginalia
+    :straight t
+    :demand
+    :config
+    (setq marginalia-annotators
+          '(marginalia-annotators-heavy
+            marginalia-annotators-light))
+    (marginalia-mode 1))
 #+end_src
 
 ** Minibuffer
 
 #+begin_SRC emacs-lisp
-(use-package minibuffer
-  :demand
-  :config
-  (setq completion-styles '(orderless partial-completion))
-  (setq completion-category-defaults nil)
-  (setq completion-cycle-threshold 3)
-  (setq completion-flex-nospace nil)
-  (setq completion-pcm-complete-word-inserts-delimiters t)
-  (setq completion-pcm-word-delimiters "-_./:| ")
-  (setq completion-show-help nil)
-  (setq completion-ignore-case t)
-  (setq-default case-fold-search t)   ; For general regexp
+  (use-package minibuffer
+    :demand
+    :config
+    (setq completion-styles '(orderless partial-completion))
+    (setq completion-category-defaults nil)
+    (setq completion-cycle-threshold 3)
+    (setq completion-flex-nospace nil)
+    (setq completion-pcm-complete-word-inserts-delimiters t)
+    (setq completion-pcm-word-delimiters "-_./:| ")
+    (setq completion-show-help nil)
+    (setq completion-ignore-case t)
+    (setq-default case-fold-search t)   ; For general regexp
 
-  (setq completions-format 'vertical)
+    (setq completions-format 'vertical)
 
-  (setq read-buffer-completion-ignore-case t)
-  (setq read-file-name-completion-ignore-case t)
+    (setq read-buffer-completion-ignore-case t)
+    (setq read-file-name-completion-ignore-case t)
 
-  (setq enable-recursive-minibuffers t)
-  (setq read-answer-short t)
-  (setq resize-mini-windows t)
-  (setq minibuffer-eldef-shorten-default t)
+    (setq enable-recursive-minibuffers t)
+    (setq read-answer-short t)
+    (setq resize-mini-windows t)
+    (setq minibuffer-eldef-shorten-default t)
 
-  (file-name-shadow-mode 1)
-  (minibuffer-depth-indicate-mode 1)
-  (minibuffer-electric-default-mode 1)
+    (file-name-shadow-mode 1)
+    (minibuffer-depth-indicate-mode 1)
+    (minibuffer-electric-default-mode 1)
 
-  ;; Defines, among others, aliases for common minibuffer commands to
-  ;; Super-KEY.  Normally these should go in individual package
-  ;; declarations, but their grouping here makes things easier to
-  ;; understand.  Besides, they are related to the minibuffer.
-  :bind (("s-b" . switch-to-buffer)
-         ("s-B" . switch-to-buffer-other-window)
-         ("s-f" . find-file)
-         ("s-F" . find-file-other-window)
-         ("s-d" . dired)
-         ("s-D" . dired-other-window)
-         :map completion-list-mode-map
-         ("n" . next-line)
-         ("p" . previous-line)
-         ("f" . next-completion)
-         ("b" . previous-completion)))
+    ;; Defines, among others, aliases for common minibuffer commands to
+    ;; Super-KEY.  Normally these should go in individual package
+    ;; declarations, but their grouping here makes things easier to
+    ;; understand.  Besides, they are related to the minibuffer.
+    :bind (("s-b" . switch-to-buffer)
+           ("s-B" . switch-to-buffer-other-window)
+           ("s-f" . find-file)
+           ("s-F" . find-file-other-window)
+           ("s-d" . dired)
+           ("s-D" . dired-other-window)
+           :map completion-list-mode-map
+           ("n" . next-line)
+           ("p" . previous-line)
+           ("f" . next-completion)
+           ("b" . previous-completion)))
 #+end_SRC
 
 ** Embark
@@ -1313,58 +1221,58 @@ Carga la configuración del Escritorio así como el gestor de ventanas (EXWM) si
 ** Consult
 
 #+begin_SRC emacs-lisp
-(use-package consult
-  :straight t
-  :demand
-  :config
-  (setq consult-line-numbers-widen t)
-  (setq completion-in-region-function #'consult-completion-in-region)
-  (setq consult-async-input-debounce 0.5)
-  (setq consult-async-input-throttle 0.8)
-  (setq consult-narrow-key ">")
-  (setq consult-widen-key "<")
-  :bind (("M-X" . consult-mode-command)
-         ("M-s m" . consult-mark)
-         :map consult-narrow-map
-         ("?" . consult-narrow-help)
-         :map minibuffer-local-completion-map
-         ("<tab>" . minibuffer-force-complete)))
+  (use-package consult
+    :straight t
+    :demand
+    :config
+    (setq consult-line-numbers-widen t)
+    (setq completion-in-region-function #'consult-completion-in-region)
+    (setq consult-async-input-debounce 0.5)
+    (setq consult-async-input-throttle 0.8)
+    (setq consult-narrow-key ">")
+    (setq consult-widen-key "<")
+    :bind (("M-X" . consult-mode-command)
+           ("M-s m" . consult-mark)
+           :map consult-narrow-map
+           ("?" . consult-narrow-help)
+           :map minibuffer-local-completion-map
+           ("<tab>" . minibuffer-force-complete)))
 #+end_SRC
 
 ** Dabbrev
 
 #+begin_src emacs-lisp
-(use-package dabbrev
-  :after minibuffer ; read those as well
-  :config
-  (setq dabbrev-abbrev-char-regexp "\\sw\\|\\s_")
-  (setq dabbrev-abbrev-skip-leading-regexp "[$*/=']")
-  (setq dabbrev-backward-only nil)
-  (setq dabbrev-case-distinction 'case-replace)
-  (setq dabbrev-case-fold-search t)
-  (setq dabbrev-case-replace 'case-replace)
-  (setq dabbrev-check-other-buffers t)
-  (setq dabbrev-eliminate-newlines t)
-  (setq dabbrev-upcase-means-case-search t)
+  (use-package dabbrev
+    :after minibuffer ; read those as well
+    :config
+    (setq dabbrev-abbrev-char-regexp "\\sw\\|\\s_")
+    (setq dabbrev-abbrev-skip-leading-regexp "[$*/=']")
+    (setq dabbrev-backward-only nil)
+    (setq dabbrev-case-distinction 'case-replace)
+    (setq dabbrev-case-fold-search t)
+    (setq dabbrev-case-replace 'case-replace)
+    (setq dabbrev-check-other-buffers t)
+    (setq dabbrev-eliminate-newlines t)
+    (setq dabbrev-upcase-means-case-search t)
 
-  ;; FIXME: this is not reliable
-  (defun prot/dabbrev-completion ()
-    "Expand current phrase or call `dabbrev-completion'."
-    (interactive)
-    (let* ((abbrev (dabbrev--abbrev-at-point))
-           (ignore-case-p (dabbrev--ignore-case-p abbrev))
-           (completion-list (dabbrev--find-all-expansions abbrev ignore-case-p)))
-      (cond
-       ((when (and (eq completion-list nil)
-                   (not (eq last-repeatable-command 'mode-exit)))
-          (insert " ")
-          (dabbrev-expand 1)))
-       (t
-        (dabbrev-completion)))))
+    ;; FIXME: this is not reliable
+    (defun prot/dabbrev-completion ()
+      "Expand current phrase or call `dabbrev-completion'."
+      (interactive)
+      (let* ((abbrev (dabbrev--abbrev-at-point))
+             (ignore-case-p (dabbrev--ignore-case-p abbrev))
+             (completion-list (dabbrev--find-all-expansions abbrev ignore-case-p)))
+        (cond
+         ((when (and (eq completion-list nil)
+                     (not (eq last-repeatable-command 'mode-exit)))
+            (insert " ")
+            (dabbrev-expand 1)))
+         (t
+          (dabbrev-completion)))))
 
-  :bind (("M-/" . dabbrev-expand)
-         ("C-M-/" . prot/dabbrev-completion)
-         ("s-/" . prot/dabbrev-completion)))
+    :bind (("M-/" . dabbrev-expand)
+           ("C-M-/" . prot/dabbrev-completion)
+           ("s-/" . prot/dabbrev-completion)))
 #+end_src
 
 ** Avy
@@ -1372,12 +1280,10 @@ Carga la configuración del Escritorio así como el gestor de ventanas (EXWM) si
 Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s).
 
 #+begin_src emacs-lisp
-
   (use-package avy
     :straight t
     :bind
     ("C-c s" . avy-goto-char))
-
 #+END_SRC
 
 * Relativo a los lenguajes
@@ -1630,7 +1536,6 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
 ** COMMENT org-roam
 
 #+begin_src emacs-lisp
-
   (use-package org-roam
     :disabled
     :ensure org-roam
@@ -1645,25 +1550,21 @@ Permite mover el punto a cualquier posición en Emacs usando pocas teclas (C-c s
                  ("C-c n g" . org-roam-show-graph))
                 :map org-mode-map
                 (("C-c n i" . org-roam-insert))))
-
 #+end_SRC
 ** ox-hugo
 
 #+begin_src emacs-lisp
-
   (use-package ox-hugo
     :straight t
     :config
     (with-eval-after-load 'ox
       (require 'ox-hugo))
     )
-
 #+end_SRC
 
 Plantilla para capturar nueva entrada
 
 #+begin_src emacs-lisp
-
   (defun org-hugo-new-subtree-post-capture-template ()
     "Returns `org-capture' template string for new Hugo post.
   See `org-capture-templates' for more information."
@@ -1685,16 +1586,13 @@ Plantilla para capturar nueva entrada
                    "#+end_src"
                    "%?\n")                ;Place the cursor here finally
                  "\n")))
-
 #+end_SRC
 ** gnuplot
 
 #+begin_src emacs-lisp
-
   (use-package gnuplot
     :straight t
     )
-
 #+end_SRC
 
 ** IDE (lsp)
@@ -1702,7 +1600,6 @@ Plantilla para capturar nueva entrada
 *** lsp-mode
 
 #+begin_SRC emacs-lisp
-
   (defun efs/lsp-mode-setup ()
     (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
     (lsp-headerline-breadcrumb-mode))
@@ -1714,47 +1611,38 @@ Plantilla para capturar nueva entrada
     (setq lsp-keymap-prefix "C-c l")
     :config
     (setq lsp-enable-which-key-integration t))
-
 #+end_SRC
 
 *** lsp-ui
 
 #+begin_SRC emacs-lisp
-
   (use-package lsp-ui
     :straight t
     :hook (lsp-mode-hook . lsp-ui-mode)
     :custom
     (lsp-ui-doc-position 'bottom))
-
 #+end_SRC
 
 *** lsp-treemacs
 
 #+begin_SRC emacs-lisp
-
   (use-package lsp-treemacs
     :straight t
     :after lsp)
-
 #+end_SRC
 
 ** Debugging DAP mode
 
 #+begin_SRC emacs-lisp
-
   (use-package dap-mode
     :straight t)
-
 #+end_SRC
 
 ** ESS
 #+begin_SRC emacs-lisp
-
   (use-package ess
     :straight t
     )
-
 #+end_SRC
 ** C++
 
@@ -1778,7 +1666,6 @@ Modern C++ code highlighting
 Cofiguramos cc-mode
 
 #+begin_src emacs-lisp
-
   (defvar my:compile-command "g++ -std=c++11")
   (use-package cc-mode
     :init
@@ -1801,7 +1688,6 @@ Cofiguramos cc-mode
       (add-hook 'c-mode-common-hook 'google-make-newline-indent)
       )
     )
-
 #+end_SRC
 ** Lua
 
@@ -1822,30 +1708,25 @@ Cofiguramos cc-mode
 La principal herramienta que uso para trabajar con python es Elpy.
 
 #+begin_src emacs-lisp
-
   (use-package elpy
     :straight t
     :init
     (elpy-enable)
     :hook (python-mode-hook . lsp-deferred))
-
 #+end_SRC
 
 ** Html
 
 #+begin_src emacs-lisp
-
   (use-package web-mode
     :straight t
     :mode ("\\.html$" . web-mode)
     )
-
 #+end_SRC
 
 ** Php
 
 #+begin_src emacs-lisp
-
   (use-package php-mode
     :straight t
     :mode ("\\.php$" . php-mode)
@@ -1854,23 +1735,19 @@ La principal herramienta que uso para trabajar con python es Elpy.
     (setq php-search-documentation-browser-function 'eww-browse-url)
     (setq php-style-delete-trailing-whitespace 1)
     )
-
 #+end_SRC
 
 ** Typoscript
 
 #+begin_src emacs-lisp
-
   (use-package typoscript-mode
     :straight
     :mode ("\\.typoscript" . typoscript-mode))
-
 #+end_SRC
 
 ** Tex - LaTeX - ConTeXt - AucTex
 
 #+begin_src emacs-lisp
-
   (use-package tex
     :straight auctex
     :custom
@@ -1883,7 +1760,6 @@ La principal herramienta que uso para trabajar con python es Elpy.
           (lambda ()
             (local-set-key (kbd "º") "\\"))) ;muy útil para LaTeX
     )
-
 #+END_SRC
 
 *** ConTeXt
@@ -1891,18 +1767,14 @@ La principal herramienta que uso para trabajar con python es Elpy.
 Usamos siempre Mark IV que ejecuta ConTeXt sobre el motor LuaTeX en vez de PDFTeX o XeTeX
 
 #+begin_src emacs-lisp
-
   (setq ConTeXt-Mark-version "IV")
-
 #+END_SRC
 
 Para mejorar la visualización
 
 #+begin_src emacs-lisp
-
   (add-hook 'TeX-mode-hook  #'visual-line-mode)
   ;; (add-hook 'TeX-mode-hook '(lambda () (switch-theme 'material)))
-
 #+END_SRC
 
 Configuración sugerida en http://wiki.contextgarden.net/AUCTeX
@@ -1910,7 +1782,6 @@ Configuración sugerida en http://wiki.contextgarden.net/AUCTeX
 **** Ayuda con delimitadores y math mode
 
 #+begin_src emacs-lisp
-
   ;;; Useful AUCTeX setup for ConTeXt (for your .emacs)
   ;;; Sanjoy Mahajan (sanjoy@mrao.cam.ac.uk), 2006-04-20.  No copyright.
   ;;;
@@ -2020,13 +1891,11 @@ Configuración sugerida en http://wiki.contextgarden.net/AUCTeX
       ("LATEX" latex-mode
        "\\\\\\(begin\\|section\\|chapter\\|documentstyle\\|documentclass\\)\\b")
       ("TEX" plain-tex-mode ".")))
-
 #+END_SRC
 
 **** Ayuda con natural tables
 
 #+begin_src emacs-lisp
-
   (defun context-insert-nattab (rows columns)
     ;; Johan Sandblom 2006-01-28
     "Insert a TABLE skeleton"
@@ -2073,77 +1942,62 @@ Configuración sugerida en http://wiki.contextgarden.net/AUCTeX
    (newline)
    (backward-char 5))
 
-
-
   (add-hook 'ConTeXt-mode-hook
            '(lambda ()
               (local-set-key "\C-cnr" 'context-insert-nattab-row)
               (local-set-key "\C-cnc" 'context-insert-nattab-column)
               (local-set-key "\C-cnn" 'context-insert-nattab)))
-
 #+END_SRC
 
 ** Markdown
 
 #+begin_src emacs-lisp
-
   (use-package markdown-mode
     :straight
     :config
     (setq markdown-fontify-code-blocks-natively t)
     :mode ("\\.md$" . markdown-mode))
-
 #+end_SRC
 
 ** YAML
 
 #+begin_src emacs-lisp
-
   (use-package yaml-mode
     :straight
     :mode (("\\.yml$" . yaml-mode)
            ("\\.yaml$" . yaml-mode)))
-
 #+end_SRC
 
 ** CSS
 
 #+begin_src emacs-lisp
-
   (use-package css-mode
     :config
     (setq css-fontify-colors nil))
-
 #+end_SRC
 
 ** Yasnippets
 
 #+begin_src emacs-lisp
-
   (use-package yasnippet
     :straight t
     :config
     (yas-reload-all)
     (yas-global-mode))
-
 #+end_SRC
 
 #+begin_src emacs-lisp
-
   (use-package yasnippet-snippets
     :straight t)
-
 #+end_SRC
 
 ** EditorConfig
 
 #+begin_src emacs-lisp
-
   (use-package editorconfig
     :straight t
     :config
     (editorconfig-mode 1))
-
 #+end_SRC
 
 * Interfaz e interacciones con Emacs
@@ -2151,40 +2005,33 @@ Configuración sugerida en http://wiki.contextgarden.net/AUCTeX
 ** Linea de edición iluminada
 
 #+begin_src emacs-lisp
-
   (use-package hl-line
     :config
     (setq global-hl-line-mode t))
-
 #+end_SRC
 ** Reconocimiento de subpalabras
 
 Altera la forma en la que Emacs entiende los límites de las palabras. Así, /camelCaseWords/ se dividen en sus partes en vez de en una sola palabra.
 
 #+begin_src emacs-lisp
-
   (use-package subword
     :delight
     :hook (prog-mode-hook . subword-mode))
-
 #+end_SRC
 ** Auto-fill (texto plano y comentarios)
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :hook (text-mode-hook . (lambda ()
                          ;; (turn-on-auto-fill)
                          (delight 'auto-fill-function nil t)
                          (setq adaptive-fill-mode t))))
-
 #+end_SRC
 ** Paréntesis
 
 Destaca los paréntesis emparentados entre sí.
 
 #+begin_src emacs-lisp
-
   (use-package paren
     :custom
     (show-paren-style 'mixed)
@@ -2192,13 +2039,11 @@ Destaca los paréntesis emparentados entre sí.
     (show-paren-when-point-inside-paren t)
     :config
     (show-paren-mode 1))
-
 #+end_SRC
 
 ** Inserta signos de apertura y cierre ('electric')
 
 #+begin_src emacs-lisp
-
   (use-package electric
     :custom
     (electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
@@ -2209,35 +2054,29 @@ Destaca los paréntesis emparentados entre sí.
     :config
     (electric-indent-mode 1)
     (electric-pair-mode 1))
-
 #+end_SRC
 
 ** Tabs e indentación
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :init
     (setq-default tab-always-indent 'complete)
     (setq-default tab-width 4))
-
 #+end_SRC
 
 Para c/c++
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :custom
     (c-default-style "bsd")
     (c-basic-offset 4))
-
 #+end_SRC
 
 ** Longitud de la línea (column count)
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :custom
     (fill-column 72)
@@ -2246,7 +2085,6 @@ Para c/c++
     (colon-double-space nil)
     :config
     (column-number-mode 1))
-
 #+end_SRC
 
 ** Borrado de espacios en blanco al final
@@ -2254,10 +2092,8 @@ Para c/c++
 Provoca innecesarios diff en git. Se borran al guardar.
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :hook (before-save-hook . delete-trailing-whitespace))
-
 #+end_SRC
 
 ** Comportamiento del scroll
@@ -2265,19 +2101,16 @@ Provoca innecesarios diff en git. Se borran al guardar.
 Ahora no recentra el cursor al llegar a los límites superior e inferior
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :config
     (setq scroll-preserve-screen-position t)
     (setq scroll-conservatively 1)
     (setq scroll-margin 0))
-
 #+end_SRC
 
 ** Números de líneas / Caracteres invisibles
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :config
     (defun prot/toggle-line-numbers ()
@@ -2295,7 +2128,6 @@ Ahora no recentra el cursor al llegar a los límites superior e inferior
         (whitespace-mode)))
     :bind (("<f7>" . prot/toggle-line-numbers)
            ("<f8>" . prot/toggle-invisibles)))
-
 #+end_SRC
 
 ** Which key (sugerencias de teclas)
@@ -2303,7 +2135,6 @@ Ahora no recentra el cursor al llegar a los límites superior e inferior
 Es necesario activar el comando manualmente pulsando =C-h= tras comenzar la secuencia (p.e. =C-x C-k C-h=).
 
 #+begin_src emacs-lisp
-
   (use-package which-key
     :straight t
     :delight
@@ -2317,13 +2148,11 @@ Es necesario activar el comando manualmente pulsando =C-h= tras comenzar la secu
     (setq which-key-separator " ")
     (setq which-key-special-keys '("SPC" "TAB" "RET" "ESC" "DEL"))
     (which-key-mode 1))
-
 #+end_SRC
 
 * Calendario y agenda en español
 
 #+begin_src emacs-lisp
-
   (use-package emacs
     :custom
     (system-time-locale (getenv "LANG")))
@@ -2358,5 +2187,4 @@ Es necesario activar el comando manualmente pulsando =C-h= tras comenzar la secu
                                 "Octubre" "Noviembre" "Diciembre"])
     (calendar-month-abbrev-array ["Ene" "Feb" "Mar" "Abr" "May" "Jun"
                                   "Jul" "Ago" "Sep" "Oct" "Nov" "Dic"]))
-
 #+END_SRC
