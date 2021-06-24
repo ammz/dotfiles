@@ -50,7 +50,7 @@ La configuración es muy básica:
 - Las ventanas (aplicaciones) se asignan a Workspaces predeterminados (p.e.: firefox:2)
 - Se elimina el modeline de las ventanas flotantes
 
-#+begin_SRC emacs-lisp :tangle emacs/.emacs.d/lisp/ammz-exwm.el
+#+begin_SRC emacs-lisp :tangle .emacs.d/lisp/ammz-exwm.el
 
   (use-package exwm
     :if ammz/exwm-enabled
@@ -95,7 +95,7 @@ Configuramos ahora algunos elementos del Escritorio.
 
  Empezamos personalizando una barra superior con alguna información. Para ello, hago uso de [[https://github.com/polybar/polybar][Polybar]], que tendremos que personalizar para su uso con EXWM.
 
-#+begin_SRC emacs-lisp :tangle emacs/.emacs.d/lisp/ammz-exwm.el
+#+begin_SRC emacs-lisp :tangle .emacs.d/lisp/ammz-exwm.el
 
   (defvar ammz/polybar-process nil
     "Guarda el proceso de la instancia Polybar, si existe")
@@ -142,7 +142,7 @@ Configuramos ahora algunos elementos del Escritorio.
 ** Keybindigs
 *** Global keys
 
-#+begin_SRC emacs-lisp :tangle emacs/.emacs.d/lisp/ammz-exwm.el
+#+begin_SRC emacs-lisp :tangle .emacs.d/lisp/ammz-exwm.el
 
   (when ammz/exwm-enabled
     (unless (get 'exwm-input-global-keys 'saved-value)
@@ -210,7 +210,7 @@ Configuramos ahora algunos elementos del Escritorio.
 
 *** Simulation keys
 
-  #+begin_SRC emacs-lisp :tangle emacs/.emacs.d/lisp/ammz-exwm.el
+  #+begin_SRC emacs-lisp :tangle .emacs.d/lisp/ammz-exwm.el
 
     (when ammz/exwm-enabled
       (unless (get 'exwm-input-simulation-keys 'saved-value)
@@ -233,7 +233,7 @@ Configuramos ahora algunos elementos del Escritorio.
 
 *** Movimiento entre workspaces
 
-#+begin_SRC emacs-lisp :tangle emacs/.emacs.d/lisp/ammz-exwm.el
+#+begin_SRC emacs-lisp :tangle .emacs.d/lisp/ammz-exwm.el
 
   (defun ammz/go-next-workspace ()
     "Cambia al siguiente workspace o reinicia desde el 0"
@@ -457,7 +457,7 @@ Configuramos ahora algunos elementos del Escritorio.
 
 * Provee el paquete ammz-exwm
 
-#+begin_src emacs-lisp :tangle emacs/.emacs.d/lisp/ammz-exwm.el
+#+begin_src emacs-lisp :tangle .emacs.d/lisp/ammz-exwm.el
 
   (provide 'ammz-exwm)
 
