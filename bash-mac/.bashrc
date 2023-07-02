@@ -17,5 +17,5 @@ if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
   fi
 
-eval "$(pipenv --completion)"
-[ -f "/Users/ammz/.ghcup/env" ] && source "/Users/ammz/.ghcup/env" # ghcup-env
+# eval "$(pipenv --completion)"
+# [ -f "/Users/ammz/.ghcup/env" ] && source "/Users/ammz/.ghcup/env" # ghcup-env

@@ -179,3 +179,4 @@ unset __conda_setup
 # export LDFLAGS="-L/usr/local/opt/php@7.2/lib"
 # export CPPFLAGS="-I/usr/local/opt/php@7.2/include"
 #[[ -f ~/.bashrc ]] && source ~/.bashrc # ghcup-env
+# [[ -f ~/.bashrc ]] && source ~/.bashrc # ghcup-env
