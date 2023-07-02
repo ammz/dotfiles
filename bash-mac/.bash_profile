@@ -173,3 +173,5 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 # [[ -f ~/.bashrc ]] && source ~/.bashrc # ghcup-env
 # opam configuration
 test -r /Users/ammz/.opam/opam-init/init.sh && . /Users/ammz/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+# smlnj configuration
+export PATH=/usr/local/smlnj/bin:"$PATH"
