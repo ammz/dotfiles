@@ -96,9 +96,9 @@ export PKG_CONFIG_PATH=/usr/local/Cellar/zlib/1.2.11/lib/pkgconfig:/usr/local/li
 alias em="/Applications/Emacs.app/Contents/MacOS/Emacs $@ &"
 alias ec="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a em -n $@"
 alias sudoec="sudo -e"
-export EDITOR=ec
+export EDITOR=emacsclient
 export SUDO_EDITOR=sudoec
-export EDITOR_ALTERNATIVE=em
+export EDITOR_ALTERNATIVE=emacs
 
 
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
