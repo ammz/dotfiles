@@ -151,15 +151,6 @@ export CPATH=/usr/local/include:/Library/Developer/CommandLineTools/SDKs/MacOSX.
 
 # source ~/.bashrc
 
-###CPCTELERA_START
-##
-## These lines configure CPCtelera in your system
-##
-
-export CPCT_PATH=/Users/ammz/cpctelera/cpctelera
-export PATH=${PATH}:/Users/ammz/cpctelera/cpctelera/tools/scripts
-
-###CPCTELERA_END
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # >>> conda initialize >>>
