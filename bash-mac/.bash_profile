@@ -175,5 +175,8 @@ export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 # opam configuration
 test -r /Users/ammz/.opam/opam-init/init.sh && . /Users/ammz/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
 # smlnj configuration
 export PATH=/usr/local/smlnj/bin:"$PATH"
