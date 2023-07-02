@@ -178,5 +178,8 @@ test -r /Users/ammz/.opam/opam-init/init.sh && . /Users/ammz/.opam/opam-init/ini
 
 # export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
+[[ -f ~/.bashrc ]] && source ~/.bashrc
+export HOMEBREW_GITHUB_API_TOKEN=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
+
 # smlnj configuration
 export PATH=/usr/local/smlnj/bin:"$PATH"
