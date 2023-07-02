@@ -140,16 +140,16 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-# [[ -f ~/.bashrc ]] && source ~/.bashrc
 
-export CPATH=/usr/local/include:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/
+# export CPATH=/usr/local/include:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/
 # export CPATH=/Library/Developer/CommandLineTools/usr/include/c++/v1
-# export CPATH="/usr/local/include"
-# export CPLUS_INCLUDE_PATH="/usr/local/include"
-# export C_INCLUDE_PATH="/usr/local/include"
-# export LIBRARY_PATH="/usr/local/lib"
+export CPATH="/usr/local/include"
+export CPLUS_INCLUDE_PATH="/usr/local/include"
+export C_INCLUDE_PATH="/usr/local/include"
+export LIBRARY_PATH="/usr/local/lib"
 
-# source ~/.bashrc
+# export LDFLAGS="-L/usr/local/opt/llvm/lib"
+# export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
@@ -170,7 +170,4 @@ unset __conda_setup
 
 # PATH="/usr/local/opt/php@7.2/bin:$PATH"
 # PATH="/usr/local/opt/php@7.2/sbin:$PATH"
-# export LDFLAGS="-L/usr/local/opt/php@7.2/lib"
-# export CPPFLAGS="-I/usr/local/opt/php@7.2/include"
-#[[ -f ~/.bashrc ]] && source ~/.bashrc # ghcup-env
 # [[ -f ~/.bashrc ]] && source ~/.bashrc # ghcup-env
