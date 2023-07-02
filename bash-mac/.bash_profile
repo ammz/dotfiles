@@ -90,7 +90,7 @@ export PATH=$PATH:/usr/local/go/bin
 
 export DISPLAY=:0.0
 
-export OSFONTDIR="/Library/Fonts//;/System/Library/Fonts//;$HOME/Library/Fonts//;$HOME/context/tex/texmf/fonts//;/usr/local/texlive/2019/texmf-dist/fonts//;/Applications/Microsoft Word.app/Contents/Resources/Fonts//"
+export OSFONTDIR="/Library/Fonts//;/System/Library/Fonts//;$HOME/Library/Fonts//;$HOME/context/tex/texmf/fonts//;/usr/local/texlive/2023/texmf-dist/fonts//;/Applications/Microsoft Word.app/Contents/Resources/Fonts//"
 export PKG_CONFIG_PATH=/usr/local/Cellar/zlib/1.2.11/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 alias em="/Applications/Emacs.app/Contents/MacOS/Emacs $@ &"
