@@ -14,12 +14,12 @@
 #
 # $ . .bash_profile
 #
-# Bash permite usar dos nombre alternativos para .bash_profile por
+# Bash permite usar dos nombres alternativos para .bash_profile por
 # razones de compatibilidad histórica: .bash_login, nombre derivado
 # del fichero .login del C Shell, y .profile nombre usado por el
 # Bourne Shell y el Korn Shell. En cualquier caso, sólo uno de estos
 # ficheros será ejecutado. Si .bash_profile existe los demás serán
-# ignorados, sino Bash comprobará si existe .bash_login y, sólo si
+# ignorados, si no Bash comprobará si existe .bash_login y, sólo si
 # éste tampoco existe, comprueba si existe .profile. La razón por la
 # que se eligió este orden de búsqueda es que podemos almacenar en
 # .profile opciones propias del Bourne Shell, y añadir opciones
@@ -35,7 +35,7 @@
 # una sola vez, al logarnos, de configuraciones que se cambian cada
 # vez que se abre un nuevo shell. Si hay configuraciones en .bashrc
 # que también queremos ejecutar al logarnos podemos poner source
-# .bashrc dentro del fichero bash_profile.
+# .bashrc dentro del fichero .bash_profile.
 
 export CLICOLOR=1
 export TERM=xterm-color
