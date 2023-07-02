@@ -59,12 +59,16 @@ export GREP_OPTIONS='--color=auto'
 # fichero en "/etc/paths.d" con éstas definidas en él. Se puede ver el fichero
 # /etc/paths.d/TeX como ejemplo. Debe ser instalado por defecto por MacTeX.
 
-export PATH=$HOME/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/.emacs.d/bin:$HOME/bin:/usr/local/sbin:$PATH
+
+# Añade PATH para los ejecutables de stack
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # Si usamos "ConTeXt Suite" debemos desmarcar la siguiente línea. Hay alguna
 # incompatibilidad con las rutas. Si queremos utilizar latex habrá que marcarla
 # y volver a arrancar emacs.
-export PATH=/Users/ammz/context/tex/texmf-osx-64/bin:$PATH
+# export PATH=/Users/ammz/context-suite/tex/texmf-osx-64/bin:$PATH
+# export PATH=/Users/ammz/context-lmtx/tex/texmf-osx-64/bin:$PATH
 
 export INFOPATH=/usr/local/share/info:/usr/local/share/info/emacs:/usr/share/info
 
@@ -130,11 +134,9 @@ if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
 # export DOCKER_CERT_PATH=/Users/ammz/.boot2docker/certs/boot2docker-vm
 # export DOCKER_TLS_VERIFY=1
 
-# Añade PATH para los ejecutables de stack
-export PATH="${HOME}/.local/bin:${PATH}"
 
 # Necesario para python instalado por brew
-# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
@@ -158,6 +160,7 @@ export CPCT_PATH=/Users/ammz/cpctelera/cpctelera
 export PATH=${PATH}:/Users/ammz/cpctelera/cpctelera/tools/scripts
 
 ###CPCTELERA_END
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
