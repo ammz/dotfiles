@@ -264,7 +264,6 @@ Configuramos ahora algunos elementos del Escritorio.
 
 * Aplicaciones asociadas al WM
 
-
 ** Polybar
 
 *.config/polybar/config:*
